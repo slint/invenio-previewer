@@ -29,18 +29,19 @@ from __future__ import unicode_literals
 from flask_assets import Bundle
 from invenio_assets import NpmBundle, RequireJSFilter
 
+
 previewer_base_css = Bundle(
-    "node_modules/bootstrap/dist/css/bootstrap.css",
     NpmBundle(
         npm={
             "bootstrap": "~3.3.6",
             "font-awesome": "~4.5.0",
         }
     ),
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "node_modules/font-awesome/css/font-awesome.min.css",
     output='gen/previewer-base.%(version)s.css'
 )
 """CSS bundle for ZIP file previewer."""
-
 
 previewer_base_js = Bundle(
     NpmBundle(
@@ -49,6 +50,7 @@ previewer_base_js = Bundle(
             "jquery": "~1.9.1",
         }
     ),
+    "node_modules/jquery/jquery.js",
     "node_modules/bootstrap/dist/js/bootstrap.js",
     output='gen/previewer-base.%(version)s.js',
 )
@@ -135,3 +137,22 @@ prism_css = Bundle(
     output='gen/prism.%(version)s.css'
 )
 """CSS bundle for prism.js syntax highlighter."""
+
+iiif_js = Bundle(
+    NpmBundle(
+        npm={
+            "openseadragon": "2.1.0",
+        },
+    ),
+    "node_modules/openseadragon/build/openseadragon/openseadragon.js",
+    "js/iiif/iiif.js",
+    # filters="uglifyjs",
+    output='gen/iiif.%(version)s.js',
+)
+"""JavaScript bundle for IIIF image previewer."""
+
+iiif_css = Bundle(
+    "css/iiif/iiif.css",
+    output='gen/iiif.%(version)s.css',
+)
+"""CSS bundle for IIIF image previewer."""

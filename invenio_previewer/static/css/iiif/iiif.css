@@ -1,0 +1,62 @@
+/*
+ * This file is part of Invenio.
+ * Copyright (C) 2016 CERN.
+ *
+ * Invenio is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * Invenio is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Invenio; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ */
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('/static/node_modules/font-awesome/fonts/fontawesome-webfont.eot');
+  src: url('/static/node_modules/font-awesome/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/static/node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'),
+       url('/static/node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'),
+       url('/static/node_modules/font-awesome/fonts/fontawesome-webfont.ttf')  format('truetype'),
+       url('/static/node_modules/font-awesome/fonts/fontawesome-webfont.svg#svgFontName') format('svg');
+}
+
+.panel-heading {
+  background-image: radial-gradient(circle farthest-corner at left top, #0B5FB1 0%, #0B5FB1 100%) !important;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.panel-heading-alert {
+  background-image: radial-gradient(circle farthest-corner at left top, #B20000 0%, #B20000 100%) !important;
+}
+
+.panel-title {
+  color: hsl(0,0%,85%);
+  font-size: 14px;
+}
+
+.spinner {
+  position: fixed;
+  color: #0B5FB1;
+  opacity: 0.8;
+  top: 50%;
+  left: 50%;
+}
+
+.fa-btn {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.fa-btn:hover {
+  opacity: 1;
+}

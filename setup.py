@@ -53,6 +53,9 @@ extras_require = {
     'files': [
         'invenio-files-rest>=1.0.0.dev20150000',
     ],
+    'iiif': [
+        'invenio-iiif>=0.1.0.dev20160000',
+    ],
     'tests': tests_require,
 }
 
@@ -142,6 +145,9 @@ setup(
             'messages = invenio_previewer',
         ],
         'invenio_assets.bundles': [
+            'previewer_base_css '
+            '= invenio_previewer.bundles:previewer_base_css',
+            'previewer_base_js = invenio_previewer.bundles:previewer_base_js',
             'previewer_csv_js = invenio_previewer.bundles:csv_previewer_js',
             'previewer_pdfjs_css = invenio_previewer.bundles:pdfjs_css',
             'previewer_pdfjs_js = invenio_previewer.bundles:pdfjs_js',
@@ -149,16 +155,17 @@ setup(
             '= invenio_previewer.bundles:pdfjs_worker_js',
             'previewer_fullscreen_js '
             '= invenio_previewer.bundles:fullscreen_js',
-            'previewer_prism_js '
-            '= invenio_previewer.bundles:prism_js',
-            'previewer_prism_css '
-            '= invenio_previewer.bundles:prism_css',
+            'previewer_iiif_css = invenio_previewer.bundles:iiif_css',
+            'previewer_iiif_js = invenio_previewer.bundles:iiif_js',
+            'previewer_prism_css ''= invenio_previewer.bundles:prism_css',
+            'previewer_prism_js ''= invenio_previewer.bundles:prism_js',
         ],
         'invenio_previewer.previewers': [
             'csv_dthreejs = invenio_previewer.extensions.csv_dthreejs',
             'json_prismjs = invenio_previewer.extensions.json_prismjs',
-            'simple_image = invenio_previewer.extensions.simple_image',
             'xml_prismjs = invenio_previewer.extensions.xml_prismjs',
+            'iiif = invenio_previewer.extensions.iiif',
+            'simple_image = invenio_previewer.extensions.simple_image',
             'mistune = invenio_previewer.extensions.mistune',
             'pdfjs = invenio_previewer.extensions.pdfjs',
             'zip = invenio_previewer.extensions.zip',

@@ -1,0 +1,78 @@
+{# -*- coding: utf-8 -*-
+#
+# This file is part of Invenio.
+# Copyright (C) 2016 CERN.
+#
+# Invenio is free software; you can redistribute it
+# and/or modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of the
+# License, or (at your option) any later version.
+#
+# Invenio is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Invenio; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307, USA.
+#
+# In applying this license, CERN does not
+# waive the privileges and immunities granted to it by virtue of its status
+# as an Intergovernmental Organization or submit itself to any jurisdiction.
+#}
+
+{%- extends config.PREVIEWER_ABSTRACT_TEMPLATE %}
+
+{% block panel %}
+<div id="viewer-header">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <div id="home" title="{{ _('Home') }}">
+        <i class="fa fa-btn fa-fw fa-lg fa-home"></i>
+      </div>
+      <div id="zoom-in" title="{{ _('Zoom In') }}">
+        <i class="fa fa-btn fa-fw fa-lg fa-search-plus"></i>
+      </div>
+      <div id="zoom-out" title="{{ _('Zoom Out') }}">
+        <i class="fa fa-btn fa-fw fa-lg fa-search-minus"></i>
+      </div>
+
+      {% if gallery|length > 1 %}
+        <div id="previous" title="{{ _('Previous') }}">
+        <i class="fa fa-btn fa-fw fa-lg fa-arrow-left"></i>
+        </div>
+        <div id="next" title="{{ _('Next') }}">
+          <i class="fa fa-btn fa-fw fa-lg fa-arrow-right"></i>
+        </div>
+        <span id="current-page">{{ (first_img_index + 1) }}</span> of {{ gallery|length }}
+      {% endif %}
+
+      <i class="fa fa-fw fa-picture-o"></i>
+      <span id='current-file'>{{ gallery[first_img_index]['filename'] }}</span>
+
+      <div id="fullScreenMode" title="{{ _('Full Screen') }}" class="pull-right">
+        <i class="fa fa-btn fa-fw fa-lg fa-arrows-alt"></i>
+      </div>
+    </div>
+  </div>
+  <div id="viewer-error" class="panel-heading panel-heading-alert" style="display: none;">
+    <div class="panel-title">
+      <i class="fa fa-fw fa-exclamation-circle"></i>
+      {{ _('This image could not be previewed') }}
+    </div>
+  </div>
+</div>
+<div id="openseadragon-viewer"></div>
+<div id="viewer-spinner" class="spinner" style="display: none;">
+  <i class="fa fa-spinner fa-pulse fa-3x margin-bottom"></i>
+  <span class="sr-only">{{ _('Loading...') }}</span>
+</div>
+
+<div id="gallery-data" data-first-image-index="{{ first_img_index }}">
+{% for img in gallery %}
+  <div data-filename="{{ img['filename'] }}" data-url="{{ img['url'] }}"></div>
+{% endfor %}
+</div>
+{% endblock %}

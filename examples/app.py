@@ -112,12 +112,14 @@ from uuid import uuid4
 from flask import Flask
 from flask_babelex import Babel
 from flask_cli import FlaskCLI
+from flask_iiif.cache.simple import ImageSimpleCache
 from invenio_access import InvenioAccess
 from invenio_accounts import InvenioAccounts
 from invenio_assets import InvenioAssets
 from invenio_db import InvenioDB, db
 from invenio_files_rest import InvenioFilesREST
 from invenio_files_rest.models import Bucket, Location, ObjectVersion
+from invenio_iiif import InvenioIIIF
 from invenio_pidstore.providers.recordid import RecordIdProvider
 from invenio_records import InvenioRecords, Record
 from invenio_records_ui import InvenioRecordsUI
@@ -143,7 +145,8 @@ app.config.update(
             route='/records/<pid_value>/preview',
             view_imp='invenio_previewer.views:preview',
         ),
-    )
+    ),
+    IIIF_CACHE_HANDLER=ImageSimpleCache(),
 )
 Babel(app)
 FlaskCLI(app)
@@ -153,6 +156,7 @@ InvenioDB(app)
 InvenioAssets(app)
 InvenioRecords(app)
 InvenioFilesREST(app)
+InvenioIIIF(app)
 InvenioPreviewer(app)
 InvenioRecordsUI(app)
 
@@ -196,14 +200,16 @@ def files():
 
     # Example files from the data folder
     example_files = (
-        'markdown.md',
-        'csvfile.csv',
-        'zipfile.zip',
-        'jsonfile.json',
-        'xmlfile.xml',
-        'notebook.ipynb',
+        # 'markdown.md',
+        # 'csvfile.csv',
+        # 'zipfile.zip',
+        # 'jsonfile.json',
+        # 'xmlfile.xml',
+        # 'notebook.ipynb',
         'jpgfile.jpg',
         'pngfile.png',
+        'tiffile.tif',
+        'giffile.gif',
     )
 
     # Create single file records
