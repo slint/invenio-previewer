@@ -41,6 +41,8 @@ recursive-include docs *.rst
 recursive-include docs Makefile
 recursive-include examples *.csv
 recursive-include examples *.html
+recursive-include examples *.ipynb
+recursive-include examples *.json
 recursive-include examples *.md
 recursive-include examples *.pdf
 recursive-include examples *.py

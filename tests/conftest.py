@@ -42,14 +42,15 @@ from flask_assets import assets
 from flask_babelex import Babel
 from invenio_assets import InvenioAssets
 from invenio_assets.cli import collect, npm
-from invenio_db import db as db_
 from invenio_db import InvenioDB
+from invenio_db import db as db_
 from invenio_files_rest import InvenioFilesREST
 from invenio_files_rest.models import Bucket, Location, ObjectVersion
 from invenio_pidstore.providers.recordid import RecordIdProvider
 from invenio_records import InvenioRecords
 from invenio_records_files.api import Record, RecordsBuckets
 from invenio_records_ui import InvenioRecordsUI
+from invenio_records_ui.views import create_blueprint_from_app
 from six import BytesIO
 from sqlalchemy_utils.functions import create_database, database_exists
 
@@ -99,6 +100,7 @@ def app():
     previewer = InvenioPreviewer(app_)._state
     InvenioRecordsUI(app_)
     InvenioFilesREST(app_)
+    app_.register_blueprint(create_blueprint_from_app(app_))
 
     # Add base assets bundles for jQuery and Bootstrap
     # Note: These bundles aren't included by default since package consumers
